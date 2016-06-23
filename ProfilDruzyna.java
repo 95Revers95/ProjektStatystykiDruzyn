@@ -248,22 +248,23 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
            
             ZawodnikDAO zawd = new ZawodnikDAO(conn);           
             List<Zawodnik> imiez = zawd.getAllByTeam(LeagueNumber);
+            zawd.getAllByTeam(idDruzyny);
             int i=0;
             while (tbm.getRowCount()!=0) tbm.removeRow(0);
             while (rset.next()) {
                            
                 Vector r = new Vector();  
                 r.addElement(i+1);
-                zawd.getAllByTeam(idDruzyny);
+                
                 r.addElement(zawd.getImie(rset));
-                r.addElement(rset.getString("nazwisko"));
-                r.addElement(rset.getString("kraj"));
-                r.addElement(rset.getString("data_ur"));
-                r.addElement(rset.getString("pozycja_ogolna"));
-                r.addElement(rset.getString("pozycja_szczegolowa"));
-                r.addElement(rset.getString("gole_zd_s"));
-                r.addElement(rset.getString("gole_st_s"));
-                r.addElement(rset.getString("asysty_s"));
+                r.addElement(zawd.getNazwisko(rset));
+                r.addElement(zawd.getKraj(rset));
+                r.addElement(zawd.getDataUr(rset));
+                r.addElement(zawd.getPozycja(rset));
+                r.addElement(zawd.getPozycjaSz(rset));
+                r.addElement(zawd.getGoleZdS(rset));
+                r.addElement(zawd.getGoleStS(rset));
+                r.addElement(zawd.getAsysty(rset));
                 tbm.addRow(r);   
                 
                 idsByRow.put(i,rset.getInt("id_pilkarza"));

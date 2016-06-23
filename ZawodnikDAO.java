@@ -66,4 +66,45 @@ public class ZawodnikDAO extends DAO{
         zaw.imie = rset.getString("imie");
         return zaw.imie;
     }
+    
+    String getNazwisko(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.nazwisko = rset.getString("nazwisko");
+        return zaw.nazwisko;
+    }
+    String getKraj(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.kraj = rset.getString("kraj");
+        return zaw.kraj;
+    }
+    String getDataUr(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.data = rset.getString("data_ur");
+        return zaw.data;
+    }
+    String getPozycja(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.pozycja = rset.getString("pozycja_ogolna");
+        return zaw.pozycja;
+    }
+    String getPozycjaSz(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.pozycja_sz = rset.getString("pozycja_szczegolowa");
+        return zaw.pozycja_sz;
+    }
+    int getGoleZdS(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.gole_zd_s = rset.getInt("gole_zd_s");
+        return zaw.gole_zd_s;
+    }
+    int getGoleStS(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.gole_st_s = rset.getInt("gole_st_s");
+        return zaw.gole_st_s;
+    }
+    int getAsysty(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.asysty = rset.getInt("asysty_s");
+        return zaw.asysty;
+    }
 }
