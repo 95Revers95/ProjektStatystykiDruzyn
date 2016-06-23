@@ -23,7 +23,7 @@ public class Zawodnik {
     int gole_st_s;
     int asysty;
     
-    public String toString(){
+    public String getImie(){
         return imie;
     }
 }
