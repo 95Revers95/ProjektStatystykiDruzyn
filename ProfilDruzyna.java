@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -244,17 +245,19 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
             Statement sql_stmt;
             sql_stmt = conn.createStatement();
             ResultSet rset = sql_stmt.executeQuery(sql);
+           
+            ZawodnikDAO zawd = new ZawodnikDAO(conn);
             
-            Zawodnik zaw = new Zawodnik();
+            Zawodnik zawo = new Zawodnik();
             
+            List<Zawodnik> imiez = zawd.getAllByTeam(LeagueNumber);
             int i=0;
             while (tbm.getRowCount()!=0) tbm.removeRow(0);
             while (rset.next()) {
                            
                 Vector r = new Vector();  
                 r.addElement(i+1);
-                //r.addElement(rset.getString("imie"));
-                r.addElement(zaw.imie);
+                r.addElement(zawo.imie);
                 r.addElement(rset.getString("nazwisko"));
                 r.addElement(rset.getString("kraj"));
                 r.addElement(rset.getString("data_ur"));

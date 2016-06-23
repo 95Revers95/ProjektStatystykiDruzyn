@@ -24,6 +24,7 @@ public class ZawodnikDAO extends DAO{
         super(conn);
         
     }
+
     
     public List<Zawodnik> getAllByTeam(int LeagueNumber){
         List<Zawodnik> listaZawodnikow = new ArrayList<Zawodnik>();
@@ -42,6 +43,9 @@ public class ZawodnikDAO extends DAO{
                 }
                 return listaZawodnikow;
         }
+    
+    
+    
     private Zawodnik parseZawodnicy(ResultSet rset) throws SQLException {
         Zawodnik zaw= new Zawodnik();
         zaw.imie=rset.getString("imie");
@@ -57,5 +61,9 @@ public class ZawodnikDAO extends DAO{
         return zaw;
     }
 
-    
+    String getImie(ResultSet rset) throws SQLException{
+        Zawodnik zaw = new Zawodnik();
+        zaw.imie = rset.getString("imie");
+        return zaw.imie;
+    }
 }
