@@ -257,7 +257,7 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
                            
                 Vector r = new Vector();  
                 r.addElement(i+1);
-                r.addElement(zawo.listaZawodnikow.getImie());
+                r.addElement(zawd.getAllByTeam(idDruzyny));
                 r.addElement(rset.getString("nazwisko"));
                 r.addElement(rset.getString("kraj"));
                 r.addElement(rset.getString("data_ur"));
