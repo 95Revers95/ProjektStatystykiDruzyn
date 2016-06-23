@@ -253,8 +253,8 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
                            
                 Vector r = new Vector();  
                 r.addElement(i+1);
-                r.addElement(rset.getString("imie"));
-                //r.addElement(zaw.toString());
+                //r.addElement(rset.getString("imie"));
+                r.addElement(zaw.imie);
                 r.addElement(rset.getString("nazwisko"));
                 r.addElement(rset.getString("kraj"));
                 r.addElement(rset.getString("data_ur"));
