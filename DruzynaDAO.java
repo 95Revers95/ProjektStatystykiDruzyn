@@ -11,11 +11,9 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
-public class DruzynaDAO {
-    private Connection conn;
-    
+public class DruzynaDAO extends DAO {
     public DruzynaDAO(Connection conn){
-        this.conn = conn;
+        super(conn);
         
     }
     public List<Druzyna> getAllByLeague(int LeagueNumber){

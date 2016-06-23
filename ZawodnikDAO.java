@@ -18,11 +18,10 @@ import java.util.Vector;
  *
  * @author eloelomno
  */
-public class ZawodnikDAO {
-    private Connection conn;
-    DAO daox;
+public class ZawodnikDAO extends DAO{
+ 
     public ZawodnikDAO(Connection conn){
-        this.conn = daox.getConnection(conn);
+        super(conn);
         
     }
     
@@ -32,6 +31,7 @@ public class ZawodnikDAO {
         try{
             Statement sql_stmt = conn.createStatement();
             ResultSet rset = sql_stmt.executeQuery(sql);
+            
             while (rset.next()) {
                 listaZawodnikow.add(parseZawodnicy(rset));        
             }
@@ -56,5 +56,6 @@ public class ZawodnikDAO {
         
         return zaw;
     }
+
     
 }

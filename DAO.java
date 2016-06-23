@@ -6,13 +6,16 @@
 package client;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author eloelomno
  */
 public abstract class DAO {
-    private Connection conn;
+    Connection conn;
     
     public DAO (Connection conn){
         this.conn=conn;
@@ -21,8 +24,6 @@ public abstract class DAO {
     Connection getConnection(Connection conn){
         return conn;
     };
-    
-    
     
     
 }
