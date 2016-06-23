@@ -28,7 +28,7 @@ public class ZawodnikDAO extends DAO{
     
     public List<Zawodnik> getAllByTeam(int TeamNumber){
         List<Zawodnik> listaZawodnikow = new ArrayList<Zawodnik>();
-        String sql = "Select * From Pilkarze,Druzyna, Uczesnictwo Where Pilkarze.id_druzyny = Druzyna.id_druzyny AND druzyna.id_druzyny =  "+ TeamNumber+" order by nazwa asc";
+        String sql = "Select * From Pilkarze Where id_druzyny ="+TeamNumber +" order by nazwisko asc;";
         try{
             Statement sql_stmt = conn.createStatement();
             ResultSet rset = sql_stmt.executeQuery(sql);
