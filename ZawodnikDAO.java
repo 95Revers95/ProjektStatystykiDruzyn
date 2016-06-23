@@ -24,6 +24,7 @@ public class ZawodnikDAO extends DAO{
         super(conn);
         
     }
+    
 
     
     public List<Zawodnik> getAllByTeam(int TeamNumber){
@@ -60,7 +61,15 @@ public class ZawodnikDAO extends DAO{
         
         return zaw;
     }
-
+    String getSQL(int idDruzyny) throws SQLException{
+        String sql="select * from pilkarze where id_druzyny="+idDruzyny + " order by id_pilkarza asc";    
+        return sql;
+    }
+    
+    String getSQL2(){
+        String sql2="select id_pilkarza from pilkarze order by id_pilkarza asc";        
+        return sql2;    
+    }
     String getImie(ResultSet rset) throws SQLException{
         Zawodnik zaw = new Zawodnik();
         zaw.imie = rset.getString("imie");

@@ -239,14 +239,13 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
     private void pokaz_zawodnikow_actionPerformed(ActionEvent e) {
         try {
             
-            String sql="select * from pilkarze where id_druzyny="+idDruzyny + " order by id_pilkarza asc";
-            String sql2="select id_pilkarza from pilkarze order by id_pilkarza asc";        
-            
+           // String sql="select * from pilkarze where id_druzyny="+idDruzyny + " order by id_pilkarza asc";
+            //String sql2="select id_pilkarza from pilkarze order by id_pilkarza asc";        
+            ZawodnikDAO zawd = new ZawodnikDAO(conn);
             Statement sql_stmt;
             sql_stmt = conn.createStatement();
-            ResultSet rset = sql_stmt.executeQuery(sql);
-           
-            ZawodnikDAO zawd = new ZawodnikDAO(conn);           
+            ResultSet rset = sql_stmt.executeQuery(zawd.getSQL(idDruzyny));
+                       
             List<Zawodnik> imiez = zawd.getAllByTeam(LeagueNumber);
             zawd.getAllByTeam(idDruzyny);
             int i=0;
@@ -288,7 +287,7 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
             sql_stmt2 = conn.createStatement();
             
             
-            ResultSet rset3 = sql_stmt2.executeQuery(sql2);
+            ResultSet rset3 = sql_stmt2.executeQuery(zawd.getSQL2());
             int a=0;
             
             while (rset3.next()) {
