@@ -246,10 +246,7 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
             sql_stmt = conn.createStatement();
             ResultSet rset = sql_stmt.executeQuery(sql);
            
-            ZawodnikDAO zawd = new ZawodnikDAO(conn);
-            
-            Zawodnik zawo = new Zawodnik();
-            
+            ZawodnikDAO zawd = new ZawodnikDAO(conn);           
             List<Zawodnik> imiez = zawd.getAllByTeam(LeagueNumber);
             int i=0;
             while (tbm.getRowCount()!=0) tbm.removeRow(0);
@@ -257,7 +254,8 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
                            
                 Vector r = new Vector();  
                 r.addElement(i+1);
-                r.addElement(zawd.getAllByTeam(idDruzyny));
+                zawd.getAllByTeam(idDruzyny);
+                r.addElement(zawd.getImie(rset));
                 r.addElement(rset.getString("nazwisko"));
                 r.addElement(rset.getString("kraj"));
                 r.addElement(rset.getString("data_ur"));
