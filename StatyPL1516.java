@@ -275,29 +275,9 @@ public class StatyPL1516 extends JFrame {
         
         
         try {
-            Statement sql_stmt;
-            sql_stmt = conn.createStatement();
-            ResultSet rset = sql_stmt.executeQuery("\n" + 
-            "select nazwa, wygrane_s, remisy_s, przegrane_s, gole_zd_s, gole_st_s, punkty_s,  (gole_zd_s - gole_st_s) as plusminus from druzyna, uczesnictwo where druzyna.kraj='ENG' AND druzyna.id_druzyny = uczesnictwo.id_druzyny AND uczesnictwo.id_rozgrywki="+LeagueNumber+ "order by punkty_s desc, plusminus desc");
-            int i=0;
-            while (tbm1.getRowCount()!=0) tbm1.removeRow(0);
-            while (rset.next()) {
-                i++;
-                int M=rset.getInt("wygrane_s")+rset.getInt("remisy_s")+rset.getInt("przegrane_s");
-                int plusminus=rset.getInt("gole_zd_s")-rset.getInt("gole_st_s");
-                Vector r = new Vector();  
-                r.addElement(i+".");
-                r.addElement(rset.getString("nazwa"));    
-                r.addElement(M);
-                r.addElement(rset.getInt("wygrane_s"));
-                r.addElement(rset.getInt("remisy_s"));
-                r.addElement(rset.getInt("przegrane_s"));
-                r.addElement(rset.getInt("gole_zd_s"));
-                r.addElement(rset.getInt("gole_st_s"));
-                r.addElement(plusminus);
-                r.addElement(rset.getInt("punkty_s"));
-                tbm1.addRow(r);        
-            }
+            DruzynaDAO dru = new DruzynaDAO(conn);
+            
+            dru.utworzTabele(tbm1, LeagueNumber);
             
         } catch (SQLException f) {
             System.out.println(f.getMessage());
