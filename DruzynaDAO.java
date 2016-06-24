@@ -68,9 +68,15 @@ public class DruzynaDAO extends DAO {
         return sql;
     }
     
-    String getSQL(int idDruzyny){
+    Druzyna getDruzyna(ResultSet rset, int idDruzyny) throws SQLException{
+        Druzyna dru = new Druzyna();
         String sql2="select * from druzyna where id_druzyny="+idDruzyny;
-        return sql2;
+        dru.kraj = rset.getString("kraj");
+        dru.budzet = rset.getInt("budzet");
+        dru.stat.wygrane_s = rset.getInt("wygrane_s");
+        dru.stat.remisy_s = rset.getInt("remisy_s");
+        dru.stat.przegrane_s = rset.getInt("przegrane_s");
+        return dru;
     }
     
     void utworzTabele(DefaultTableModel tbm1, int LeagueNumber) throws SQLException{
