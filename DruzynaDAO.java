@@ -52,4 +52,18 @@ public class DruzynaDAO extends DAO {
         return stdr;
     }
     
+    String getSQLWyswietlDruzyny(int LeagueNumber){
+        String sql = "select * from druzyna, uczesnictwo where druzyna.id_druzyny = uczesnictwo.id_druzyny AND uczesnictwo.id_rozgrywki = "+LeagueNumber +"order by nazwa asc";
+        return sql;
+    }
+    
+    String getSQLStrzelcy(int LeagueNumber){
+        String sql = "select * from pilkarze, rozgrywki WHERE rozgrywki.id_rozgrywki="+LeagueNumber+ "order by gole_zd_s desc";
+        return sql;
+    }
+    
+    String getSQLAsystenci(int LeagueNumber){
+        String sql = "select * from pilkarze, rozgrywki where rozgrywki.id_rozgrywki ="+LeagueNumber+ "order by asysty_s desc";
+        return sql;
+    }
 }
