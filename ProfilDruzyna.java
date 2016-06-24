@@ -187,19 +187,28 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
         
         
      
-        DruzynaDAO dru = new DruzynaDAO(conn);
         Statement sql_stmt1;                
         sql_stmt1 = conn.createStatement();
-        ResultSet rset = sql_stmt1.executeQuery(dru.getSQL(idDruzyny));
-        while (tbm1.getRowCount()!=0) tbm1.removeRow(0);
-        while (rset.next()) {
+        DruzynaDAO dru = new DruzynaDAO(conn);
+        
+        ResultSet rset = sql_stmt1.executeQuery("select * from druzyna where id_druzyny="+idDruzyny);
+        dru.getDruzyna(rset, idDruzyny);
+        
+//        while (tbm1.getRowCount()!=0) tbm1.removeRow(0);
+//        while (rset.next()) {
             Vector a = new Vector();
-            a.addElement(rset.getString("Kraj"));
-            a.addElement(rset.getString("Miasto"));
-            a.addElement(rset.getString("Budzet"));
-            a.addElement(rset.getString("Wygrane_s"));
-            a.addElement(rset.getString("Remisy_s"));
-            a.addElement(rset.getString("Przegrane_s"));
+            a.addElement(rset.getString(" "));
+            a.addElement(rset.getString(dru.getDruzyna(rset, idDruzyny).kraj));
+            a.addElement(dru.getDruzyna(rset, idDruzyny).budzet);
+            a.addElement(dru.getDruzyna(rset, idDruzyny).stat.wygrane_s);
+            a.addElement(dru.getDruzyna(rset, idDruzyny).stat.remisy_s);
+            a.addElement(dru.getDruzyna(rset, idDruzyny).stat.przegrane_s);
+//            a.addElement(rset.getString("Kraj"));
+//            a.addElement(rset.getString("Miasto"));
+//            a.addElement(rset.getString("Budzet"));
+//            a.addElement(rset.getString("Wygrane_s"));
+//            a.addElement(rset.getString("Remisy_s"));
+//            a.addElement(rset.getString("Przegrane_s"));
             tbm1.addRow(a);
             
             namesColumns_d.put(1,"Kraj");
@@ -208,7 +217,7 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
             namesColumns_d.put(4,"Wygrane_s");
             namesColumns_d.put(5,"Remisy_s");
             namesColumns_d.put(6,"Przegrane_s");
-        }
+        //}
         
         tbm.addTableModelListener(this);
         
