@@ -70,6 +70,10 @@ public class ZawodnikDAO extends DAO{
         String sql2="select id_pilkarza from pilkarze order by id_pilkarza asc";        
         return sql2;    
     }
+    String getSQLDelete(int lp){
+        String sql = "Delete From Pilkarze Where id_pilkarza="+lp;
+        return sql;
+    }
     String getImie(ResultSet rset) throws SQLException{
         Zawodnik zaw = new Zawodnik();
         zaw.imie = rset.getString("imie");
