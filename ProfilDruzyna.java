@@ -342,13 +342,14 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
      */
     private void usun_actionPerformed(ActionEvent e) {
         try{
+            ZawodnikDAO zaw = new ZawodnikDAO(conn);
             int row = jTable1.getSelectedRow();
             tbm.removeRow(row);
             
             Statement sql_stmt1;
             sql_stmt1 = conn.createStatement();
             Integer lp = idsByRow.get(row);
-            sql_stmt1.executeUpdate("Delete From Pilkarze Where id_pilkarza="+lp);
+            sql_stmt1.executeUpdate(zaw.getSQLDelete(lp));
             idsByRow.remove(row);
             
             sql_stmt1.close();
@@ -362,7 +363,8 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
     /**
      * Funkcja, która umozliwia dodanie zawodnikow do psozczegolniej druzyny. Funkcja laczy sie z 
      * baza danych
-     * @param id_zaw - zmienna, która jest jednoczensnie id zawodnika z bazy danych
+     * @param e - akcja
+     * id_zaw - zmienna, która jest jednoczensnie id zawodnika z bazy danych
      */
     private void dodaj_actionPerformed(ActionEvent e) {
             int id_zaw=id_zawodnika_last+1;
@@ -370,7 +372,6 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
             accept.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             accept.setLocationRelativeTo(null);
             accept.setVisible(true);
-
     }
     /** 
      * Funkcja, ktora odwieza lsite zawdonikow. Wypisuje na nowo wszystkich zawodnikow z zespolu
