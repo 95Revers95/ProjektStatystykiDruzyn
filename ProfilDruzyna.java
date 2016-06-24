@@ -187,10 +187,10 @@ public class ProfilDruzyna extends JFrame implements TableModelListener{
         
         
      
-        String sql2="select * from druzyna where id_druzyny="+idDruzyny;
+        DruzynaDAO dru = new DruzynaDAO(conn);
         Statement sql_stmt1;                
         sql_stmt1 = conn.createStatement();
-        ResultSet rset = sql_stmt1.executeQuery(sql2);
+        ResultSet rset = sql_stmt1.executeQuery(dru.getSQL(idDruzyny));
         while (tbm1.getRowCount()!=0) tbm1.removeRow(0);
         while (rset.next()) {
             Vector a = new Vector();
